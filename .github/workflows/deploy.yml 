@@ -12,8 +12,5 @@ jobs:
       - name: Install Vercel CLI
         run: npm install --global vercel
 
-      # Deploys directly to Vercel using only the token
-      # --yes skips interactive CLI prompts
-      # --prod makes it a live production deployment
-      # Vercel will automatically look at your code and build it on their servers.
-       Tarun: vercel --token=${{ secrets.VERCEL_TOKEN }} --yes --prod
+      - name: Deploy to Vercel
+        run: vercel --token=${{ secrets.VERCEL_TOKEN }} --yes --prod
