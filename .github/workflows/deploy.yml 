@@ -9,23 +9,11 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20 # Matches Vercel's default Node version
-          cache: 'npm'
-
-      - name: Install Dependencies
-        run: npm ci
-
       - name: Install Vercel CLI
         run: npm install --global vercel
 
-      - name: Pull Vercel Environment Information
-        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
-
-      - name: Build Project Artifacts
-        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
-
-      - name: Deploy Project Artifacts to Vercel
-        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+      # Deploys directly to Vercel using only the token
+      # --yes skips interactive CLI prompts
+      # --prod makes it a live production deployment
+      # Vercel will automatically look at your code and build it on their servers.
+       Tarun: vercel --token=${{ secrets.VERCEL_TOKEN }} --yes --prod
