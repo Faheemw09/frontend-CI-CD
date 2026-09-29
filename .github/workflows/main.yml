@@ -1,6 +1,7 @@
 name: Deploy React App to Vercel
 
-on: push
+on: 
+  workflow_dispatch:  
 
 jobs:
   deploy:
